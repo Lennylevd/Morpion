@@ -1,0 +1,6 @@
+U:\Espace privé\Morpion\Morpion_Code\Morpion_Code\bin\Debug\Morpion_Code.exe.config
+U:\Espace privé\Morpion\Morpion_Code\Morpion_Code\bin\Debug\Morpion_Code.exe
+U:\Espace privé\Morpion\Morpion_Code\Morpion_Code\bin\Debug\Morpion_Code.pdb
+U:\Espace privé\Morpion\Morpion_Code\Morpion_Code\obj\Debug\Morpion_Code.csprojResolveAssemblyReference.cache
+U:\Espace privé\Morpion\Morpion_Code\Morpion_Code\obj\Debug\Morpion_Code.exe
+U:\Espace privé\Morpion\Morpion_Code\Morpion_Code\obj\Debug\Morpion_Code.pdb
