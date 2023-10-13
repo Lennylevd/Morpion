@@ -12,6 +12,7 @@ namespace Morpion
         public static void AfficherMorpion(int j, int k)
         {
             // A compléter 
+            
         }
 
         // Fonction permettant de changer
@@ -24,6 +25,7 @@ namespace Morpion
         {
             // A compléter 
             return false;
+            
         }
 
         // Fonction permettant de vérifier
@@ -32,6 +34,7 @@ namespace Morpion
         {
             // A compléter 
             return false;
+            
         }
 
         // Programme principal
@@ -83,6 +86,9 @@ namespace Morpion
 
             // Fin de la partie
             // A compléter 
+           
+            if (gagner==true)
+				Console.Write("Le joueur " , joueur , " gagne !") ;
 
             Console.ReadKey();
     }
