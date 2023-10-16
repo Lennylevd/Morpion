@@ -7,14 +7,23 @@ namespace Morpion
     class Program
     {
         public static int[,] grille = new int[3, 3]; // matrice pour stocker les coups joués
-
         // Fonction permettant l'affichage du Morpion
         public static void AfficherMorpion(int j, int k)
         {
-            // A compléter 
-            
+            // A compléter
+            Console.WriteLine();
+            for (j = 0; j < grille.GetLength(0); j++)
+            {
+            	Console.Write("\n|====|====|====|\n");
+                Console.Write("|");
+                for (k = 0; k < grille.GetLength(1); k++)
+                {
+					Console.Write(" -- ");
+                    Console.Write("|");
+                }
+            }
         }
-
+		
         // Fonction permettant de changer
         // dans le tableau qu'elle est le 
         // joueur qui à jouer
@@ -56,14 +65,29 @@ namespace Morpion
 	        for (j=0; j < grille.GetLength(0); j++)
 		        for (k=0; k < grille.GetLength(1); k++)
 			        grille[j,k] = 10;
+        	
+            
 					while(!gagner && essais != 9)
 					{
-
 						// A compléter 
+						AfficherMorpion(j,k);
 						try
 						{
+							Console.WriteLine();
+							if (joueur==1)
+							{
+								Console.Write("A toi de Jouer joueur 1");
+							}
+							else
+							{
+								Console.Write("A toi de Jouer joueur 2");
+							}
+							Console.WriteLine();
+							Console.WriteLine();
 							Console.WriteLine("Ligne   =    ");
 							Console.WriteLine("Colonne =    ");
+							
+								
 							// Peut changer en fonction de comment vous avez fait votre tableau.
 							Console.SetCursorPosition(LigneDébut + 10, ColonneDébut + 9); // Permet de manipuler le curseur dans la fenêtre 
 							l = int.Parse(Console.ReadLine()) - 1; 
@@ -72,7 +96,7 @@ namespace Morpion
 							c = int.Parse(Console.ReadLine()) - 1;
 
 							// A compléter 
-
+								
 						}
 						catch (Exception e)
 						{
@@ -81,7 +105,11 @@ namespace Morpion
 
 						// Changement de joueur
 						// A compléter 
-
+						if (joueur==1)
+							joueur=joueur+1;
+						else
+							joueur=joueur-1;
+						
 					}; // Fin TQ
 
             // Fin de la partie
@@ -89,8 +117,10 @@ namespace Morpion
            
             if (gagner==true)
 				Console.Write("Le joueur " , joueur , " gagne !") ;
-
+				
             Console.ReadKey();
     }
   }
 }
+    
+
