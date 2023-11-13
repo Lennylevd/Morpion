@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Threading;
 using System.Security.Policy;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Morpion
 {
     class Program
     {
         public static int[,] grille = new int[3, 3]; // matrice pour stocker les coups joués
+
         // Fonction permettant l'affichage du Morpion
         public static void AfficherMorpion(int j, int k)
         {
-            //compléter
             for (j = 0; j < grille.GetLength(0); j++)
             {
             	Console.Write("\n|---|---|---|\n");
@@ -27,51 +27,63 @@ namespace Morpion
 					if (grille[j,k] == 10)
 					{
                 		Console.Write(" _ |");
-					}	
-               }
-                }
-                
-           }       
-        
-		
-        // Fonction permettant de changer dans le tableau qu'elle est le joueur qui à jouer
-        // Bien vérifier que le joueur ne sor tpas du tableau et que la positionn'est pas déjà jouée
+					}
+
+
+                }}}
+
+        // Fonction permettant de changer
+        // dans le tableau qu'elle est le 
+        // joueur qui à jouer
+        // Bien vérifier que le joueur ne sort
+        // pas du tableau et que la position
+        // n'est pas déjà jouée
         public static bool AJouer(int j, int k, int joueur)
         {
-            // A compléter
-			
-                
-                	if (grille[j,k] == 0)
-						Console.Write(" O |");
-                	
-					if (grille[j,k] == 1)
-						Console.Write(" X |");
-					
-					if (grille[j,k] == 10)
-					{
-                		Console.Write(" _ |");
-					}	
-               
-				 if (grille[j,k] != 0 && grille[j,k] != 1)
-                {
-				 	joueur=joueur-1;
-                    Console.WriteLine("vous ne pouvez pas prendre cette case");
-                    Console.WriteLine("\n");
-                    Console.WriteLine("veuillez attendre 2s...");
-                    Thread.Sleep(2000);
-                }
-			
+            // A compléter 
             return false;
-            
         }
 
-        // Fonction permettant de vérifier si un joueur à gagner
+        // Fonction permettant de vérifier
+        // si un joueur à gagner
         public static bool Gagner(int l, int c, int joueur)
         {
-
-            
+            // A compléter 
+            bool gagner = false;
+            if(grille[0,0]==0 && grille[0,1]==0 && grille[0,2]==0 || grille[0,0]==1 && grille[0,1]==1 && grille[0,2]==1)
+                        	{
+                        		return true;
+                        	}
+							if(grille[1,0]==0 && grille[1,1]==0 && grille[1,2]==0 || grille[1,0]==1 && grille[1,1]==1 && grille[1,2]==1)
+                        	{
+                        		return true;
+                        	}
+							if(grille[2,0]==0 && grille[2,1]==0 && grille[2,2]==0 || grille[2,0]==1 && grille[2,1]==1 && grille[2,2]==1)
+                        	{
+                        		return true;
+                        	}
+							if(grille[0,0]==0 && grille[1,0]==0 && grille[2,0]==0 || grille[0,0]==1 && grille[1,0]==1 && grille[2,0]==1)
+                        	{
+                        		return true;
+                        	}
+							if(grille[0,1]==0 && grille[1,1]==0 && grille[2,1]==0 || grille[0,1]==1 && grille[1,1]==1 && grille[2,1]==1)
+                        	{
+                        		return true;
+                        	}
+							if(grille[0,2]==0 && grille[1,2]==0 && grille[2,2]==0 || grille[0,2]==1 && grille[1,2]==1 && grille[2,2]==1)
+                        	{
+                        		return true;
+                        	}
+							if(grille[0,0]==0 && grille[1,1]==0 && grille[2,2]==0 || grille[0,0]==1 && grille[1,1]==1 && grille[2,2]==1)
+                        	{
+                        		return true;
+                        	}
+							if(grille[0,2]==0 && grille[1,1]==0 && grille[2,0]==0 || grille[0,2]==1 && grille[1,1]==1 && grille[2,0]==1)
+                        	{
+                        		return true;
+                        	}
+							
             return false;
-            
         }
 
         // Programme principal
@@ -80,7 +92,6 @@ namespace Morpion
             //--- Déclarations et initialisations --
             int LigneDébut = Console.CursorTop;     // par rapport au sommet de la fenêtre
             int ColonneDébut = Console.CursorLeft; // par rapport au sommet de la fenêtre
-
             int essais = 0;    // compteur d'essais
 	        int joueur = 1 ;   // 1 pour la premier joueur, 2 pour le second
 	        int l, c = 0;      // numéro de ligne et de colonne
@@ -93,73 +104,83 @@ namespace Morpion
 	        for (j=0; j < grille.GetLength(0); j++)
 		        for (k=0; k < grille.GetLength(1); k++)
 			        grille[j,k] = 10;
-        	
-            
 					while(!gagner && essais != 9)
 					{
+						if(Gagner(0,0,1))
+						   {
+						   	gagner = true;
+						   	if (joueur==2)
+						   	{
+						   		Console.Clear();
+						   		Console.WriteLine("Le joueur 1 a gagné");
+						   		Thread.Sleep(5000);
+								System.Environment.Exit(0);
+						   	}
+						   	else
+						   	{
+						   		Console.Clear();
+						   		Console.WriteLine("Le joueur 2 a gagné");
+						   		Thread.Sleep(5000);
+								System.Environment.Exit(0);
+						   	}
+						   	
+						   }
+						AfficherMorpion(j, k);
+
 						// A compléter 
-						AfficherMorpion(j,k);
-						AJouer(j,k,joueur);
 						try
 						{
 							
-							
-										
-									
-							if (essais > 9)
+							if (joueur == 1)
 							{
-								Console.WriteLine("Egalité");
-								break;	
+								Console.WriteLine();
+								Console.WriteLine("Joueur 1 à toi !");
 							}
-							
-							Console.WriteLine();
-							if (joueur==1)
+							if (joueur == 2)
 							{
-								Console.Write("A toi de Jouer joueur 1");
-							}
-							else
-							{
-								Console.Write("A toi de Jouer joueur 2");
-							}
-							Console.WriteLine();
-							Console.WriteLine();
-							Console.Write("Ligne = "); 
-							Console.WriteLine();
-							Console.Write("Colonne = "); 
-
-							
-							essais = essais+1 ;
+								Console.WriteLine();
 								
+								Console.WriteLine("Joueur 2 à toi !");
+							}
+							Console.WriteLine();
+							Console.WriteLine("Ligne   =    ");
+							Console.WriteLine("Colonne =    ");
+							Console.WriteLine("nombre d'essais:");
+							Console.WriteLine(essais);
 							// Peut changer en fonction de comment vous avez fait votre tableau.
 							Console.SetCursorPosition(LigneDébut + 10, ColonneDébut + 9); // Permet de manipuler le curseur dans la fenêtre 
-							l = int.Parse(Console.ReadLine()) -1; 
+							l = int.Parse(Console.ReadLine()) - 1; 
 							// Peut changer en fonction de comment vous avez fait votre tableau.
 							Console.SetCursorPosition(LigneDébut + 10, ColonneDébut + 10); // Permet de manipuler le curseur dans la fenêtre 
-							c = int.Parse(Console.ReadLine()) -1;
+							c = int.Parse(Console.ReadLine()) - 1;
+							Console.WriteLine();
+							Console.WriteLine();
 							for (j=0; j < grille.GetLength(0); j++)
-		        				for (k=0; k < grille.GetLength(1); k++)
+		        			for (k=0; k < grille.GetLength(1); k++)
 							{
-								if ((j==l)&&(k==c))
+								
+									if ((j==l)&&(k==c))
+							{
+								if (joueur==1)
 								{
-									if (joueur==1)
-									{
-										grille[j,k] = 0;
-									}
-									if (joueur==2)
-									{
-										grille[j,k] = 1;
-									}
+									if (grille[j,k] != 0 && grille[j,k] != 1)
+									grille[j,k] = 0;
 								}
-							}
-							if ( l > 3 && l <1)
-								Console.WriteLine("Cette ligne est impossible !");
+								if (joueur==2)
+								{
+									if (grille[j,k] != 0 && grille[j,k] != 1)
+									grille[j,k] =1;
+								}
 								
-							if (c > 3 && c < 1)
-								Console.WriteLine("Cette colonne est impossible !");
-							
-							
+								
+                        	
+							}}
+							joueur++;
+							essais++;
+                        	if(joueur==3)
+                        		joueur=joueur-2;								
 							// A compléter 
-								
+
 						}
 						catch (Exception e)
 						{
@@ -169,25 +190,13 @@ namespace Morpion
 
 						// Changement de joueur
 						// A compléter 
-						if (!gagner)
-						{
-							if (joueur == 1)
-								joueur = 2;
-							else
-								joueur = 1;
-						}
-						
+
 					}; // Fin TQ
 
             // Fin de la partie
             // A compléter 
-           
-            if (gagner==true)
-				Console.Write("Le joueur " , joueur , " gagne !") ;
-				
+
             Console.ReadKey();
     }
   }
 }
-    
-
